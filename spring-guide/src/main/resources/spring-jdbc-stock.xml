@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- jdbc配置文件 -->
+	<context:property-placeholder location="classpath:jdbc.properties"
+		ignore-unresolvable="true" system-properties-mode="OVERRIDE" />
+
+	<!--配置数据库数据源-->
+	<!--myShow-->
+    <!-- 配置druid数据源连接池 -->
+	<!--<bean id="myShowDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">-->
+    <bean id="myShowDataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
+    <property name="username" value="${myshow.jdbc.user}"></property>
+		<property name="password" value="${myshow.jdbc.password}"></property>
+		<property name="driverClassName" value="${myshow.jdbc.mysql.driver}"></property>
+		<property name="url" value="${myshow.jdbc.url}"></property>
+	</bean>
+	<!--配置Spring的jdbcTemplate-->
+	<bean id="myShowJdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="myShowDataSource"></property>
+	</bean>
+	<!--<bean id="myShow" class="com.maoyan.show.biz.dao.MySqlDaoImpl">-->
+        <!--<property name="jdbcTemplate" ref="myShowJdbcTemplate"/>-->
+	<!--</bean>-->
+
+
+	<!--myShowOrder-->
+	<!-- 配置druid数据源连接池 -->
+	<!--<bean id="myShowDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">-->
+	<bean id="myShowOrderDataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
+		<property name="username" value="${myshoworder.jdbc.user}"></property>
+		<property name="password" value="${myshoworder.jdbc.password}"></property>
+		<property name="driverClassName" value="${myshoworder.jdbc.mysql.driver}"></property>
+		<property name="url" value="${myshoworder.jdbc.url}"></property>
+	</bean>
+	<!--配置Spring的jdbcTemplate-->
+	<bean id="myShowOrderJdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="myShowOrderDataSource"></property>
+	</bean>
+
+	<!--myShowMerchant-->
+	<!--<bean id="myShowMerchantDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">-->
+    <bean id="myShowMerchantDataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
+		<property name="username" value="${myshowmerchant.jdbc.user}"></property>
+		<property name="password" value="${myshowmerchant.jdbc.password}"></property>
+		<property name="driverClassName" value="${myshowmerchant.jdbc.mysql.driver}"></property>
+		<property name="url" value="${myshowmerchant.jdbc.url}"></property>
+	</bean>
+	<bean id="myShowMerchantJdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="myShowMerchantDataSource"></property>
+	</bean>
+    <!--<bean id="myShowMerchant" class="com.maoyan.show.biz.dao.MySqlDaoImpl">-->
+        <!--<property name="jdbcTemplate" ref="myShowMerchantJdbcTemplate"/>-->
+    <!--</bean>-->
+	
+	<!--myGewara-->
+	<bean id="myGewaraDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="username" value="${mygewara.jdbc.user}"></property>
+		<property name="password" value="${mygewara.jdbc.password}"></property>
+		<property name="driverClassName" value="${mygewara.jdbc.mysql.driver}"></property>
+		<property name="url" value="${mygewara.jdbc.url}"></property>
+	</bean>
+	<bean id="myGewaraJdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="myGewaraDataSource"></property>
+	</bean>
+	
+	<!--pointCard-->
+	<bean id="pointCardDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="username" value="${pointcard.jdbc.user}"></property>
+		<property name="password" value="${pointcard.jdbc.password}"></property>
+		<property name="driverClassName" value="${pointcard.jdbc.mysql.driver}"></property>
+		<property name="url" value="${pointcard.jdbc.url}"></property>
+	</bean>
+	<bean id="pointCardJdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="pointCardDataSource"></property>
+	</bean>
+
+</beans>

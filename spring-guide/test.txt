@@ -1,0 +1,3 @@
+com.xxx.yyy.MultiEnv.MultiEnvTest test 2020-02-04 12:02:24 10120毫秒 SUCCESS
+com.xxx.yyy.otherTest test1111 2020-02-04 12:02:35 5010毫秒 FAILURE
+com.xxx.yyy.otherTest1 test123 2020-02-04 12:02:40 5006毫秒 SUCCESS

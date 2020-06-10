@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Test Suite" thread-count="1" verbose="1">
+    <!--<listeners>-->
+        <!--<listener class-name="com.xxx.yyy.Retry.RetryListener" />-->
+        <!--&lt;!&ndash;<listener class-name="com.xxx.yyy.Retry.TestNgListener" />&ndash;&gt;-->
+        <!--&lt;!&ndash;<listener class-name="com.xxx.yyy.ExtentReports.ExtentTestNGIReporterListener"/>&ndash;&gt;-->
+    <!--</listeners>-->
+    <!--<listeners>-->
+        <!--&lt;!&ndash;<listener class-name="com.vimalselvam.testng.listener.ExtentTestNgFormatter"/>&ndash;&gt;-->
+        <!--<listener class-name="com.xxx.yyy.ExtentReports.ExtentTestNGIReporterListener"/>-->
+    <!--</listeners>-->
+    <!--<listeners>-->
+        <!--<listener class-name="io.qameta.allure.testng.AllureTestNg"></listener>-->
+    <!--</listeners>-->
+    <listeners>
+        <listener class-name="com.xxx.yyy.Report.Report"></listener>
+    </listeners>
+    <test name="retryTest">
+        <classes>
+            <!--<class name="com.xxx.yyy.retryTest">-->
+                <!--&lt;!&ndash;<parameter name="para1" value="test_para123"/>&ndash;&gt;-->
+                <!--&lt;!&ndash;<methods>&ndash;&gt;-->
+                <!--&lt;!&ndash;<include name ="dataTest"></include>&ndash;&gt;-->
+                <!--&lt;!&ndash;</methods>&ndash;&gt;-->
+
+            <!--</class>-->
+            <class name="com.xxx.yyy.MultiEnv.MultiEnvTest"/>
+        </classes>
+    </test>
+
+    <test name="otherTest">
+        <classes>
+            <class name="com.xxx.yyy.otherTest" />
+            <class name="com.xxx.yyy.otherTest1" />
+        </classes>
+    </test>
+    <!--<test name="otherTest1">-->
+        <!--<classes>-->
+
+        <!--</classes>-->
+    <!--</test>-->
+    <!--<test name="otherTest1111">-->
+        <!--<classes>-->
+            <!--<class name="com.xxx.yyy.allureTest" />-->
+        <!--</classes>-->
+    <!--</test>-->
+</suite>
