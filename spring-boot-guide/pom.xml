@@ -11,13 +11,13 @@
     <parent>
         <artifactId>CodeGuide</artifactId>
         <groupId>com.xxx.yyy</groupId>
-        <version>1.0-SNAPSHOT</version>
+        <version>0.0.1-SNAPSHOT</version>
     </parent>
     <groupId>com.xxx.yyy</groupId>
     <artifactId>spring-boot-guide</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>spring-boot-guide</name>
-    <description>Demo project for Spring Boot</description>
+    <description>spring-boot-guide</description>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -156,13 +156,13 @@
 
 
 
-        <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>1.18.10</version>
-            <scope>provided</scope>
-        </dependency>
+        <!--&lt;!&ndash; https://mvnrepository.com/artifact/org.projectlombok/lombok &ndash;&gt;-->
+        <!--<dependency>-->
+            <!--<groupId>org.projectlombok</groupId>-->
+            <!--<artifactId>lombok</artifactId>-->
+            <!--<version>1.18.10</version>-->
+            <!--<scope>provided</scope>-->
+        <!--</dependency>-->
 
         <dependency>
             <groupId>org.apache.commons</groupId>
@@ -200,6 +200,12 @@
             <!--<artifactId>swagger-spring-boot-starter</artifactId>-->
             <!--<version>2.1.5-RELEASE</version>-->
         <!--</dependency>-->
+
+        <dependency>
+            <groupId>com.xxx.yyy</groupId>
+            <artifactId>unified-exception-handling</artifactId>
+            <version>${unified-exception-handling}</version>
+        </dependency>
 
 
 

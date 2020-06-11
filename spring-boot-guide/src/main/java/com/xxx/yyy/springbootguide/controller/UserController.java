@@ -6,6 +6,7 @@ import com.xxx.yyy.springbootguide.model.User;
 import com.xxx.yyy.springbootguide.model.UserSlave;
 import com.xxx.yyy.springbootguide.service.UserService;
 import com.xxx.yyy.springbootguide.utils.RedisUtil;
+import com.xxx.yyy.unifiedexceptionhandling.entity.response.R;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -60,6 +61,15 @@ public class UserController {
     public UserSlave get(@PathVariable int id) {
         log.info("单个参数用  @ApiImplicitParam");
         return userService.query(id);
+    }
+
+    @GetMapping("get/{id}")
+    @ApiOperation(value = "根据用户id查询用户（DONE）1111")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "id", value = "用户编号", dataType = DataType.INT, paramType = ParamType.PATH, required = true),
+    })
+    public R<UserSlave> get11(@PathVariable int id){
+        return new R<>(userService.query11(id));
     }
 
     @PostMapping(value = "/save")

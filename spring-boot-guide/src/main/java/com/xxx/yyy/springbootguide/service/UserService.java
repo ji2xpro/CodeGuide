@@ -15,6 +15,8 @@ public interface UserService {
 
     UserSlave query(int id);
 
+    UserSlave query11(int id);
+
     Boolean update(User user);
 
     void delete(int id);

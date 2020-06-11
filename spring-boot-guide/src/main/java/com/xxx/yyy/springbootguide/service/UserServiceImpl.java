@@ -2,6 +2,7 @@ package com.xxx.yyy.springbootguide.service;
 
 import com.xxx.yyy.springbootguide.config.datasource.DataSource;
 import com.xxx.yyy.springbootguide.enums.DataSources;
+import com.xxx.yyy.springbootguide.enums.ResponseEnum;
 import com.xxx.yyy.springbootguide.mapper.UserMapper;
 import com.xxx.yyy.springbootguide.mapper.UserSlaveMapper;
 import com.xxx.yyy.springbootguide.model.User;
@@ -43,6 +44,15 @@ public class UserServiceImpl implements UserService {
     public UserSlave query(int id) {
         log.info("进入get方法查找id："+id);
         return userSlaveMapper.findById(id);
+    }
+
+    @Override
+    public UserSlave query11(int id) {
+        UserSlave userSlave = userSlaveMapper.findById1(id);
+
+        ResponseEnum.ITEM_NOT_FOUND.assertNotNull(userSlave);
+
+        return userSlave;
     }
 
     @Override
