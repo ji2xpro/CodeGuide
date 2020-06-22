@@ -20,9 +20,10 @@
     <description>spring-boot-guide</description>
 
     <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <java.version>1.8</java.version>
+        <!--<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>-->
+        <!--<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>-->
+        <!--<java.version>1.8</java.version>-->
+        <spring.boot.admin>2.2.3</spring.boot.admin>
     </properties>
 
     <dependencies>
@@ -97,8 +98,6 @@
             <version>1.1.21</version>
         </dependency>
 
-
-
         <!--通用mapper插件 文档地址：https://gitee.com/free/Mapper/wikis/Home-->
         <dependency>
             <groupId>tk.mybatis</groupId>
@@ -154,16 +153,6 @@
             <!--<optional>true</optional>-->
         <!--</dependency>-->
 
-
-
-        <!--&lt;!&ndash; https://mvnrepository.com/artifact/org.projectlombok/lombok &ndash;&gt;-->
-        <!--<dependency>-->
-            <!--<groupId>org.projectlombok</groupId>-->
-            <!--<artifactId>lombok</artifactId>-->
-            <!--<version>1.18.10</version>-->
-            <!--<scope>provided</scope>-->
-        <!--</dependency>-->
-
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
@@ -190,16 +179,11 @@
             <artifactId>knife4j-spring-boot-starter</artifactId>
             <version>2.0.1</version>
         </dependency>
+
         <dependency>
             <groupId>jakarta.activation</groupId>
             <artifactId>jakarta.activation-api</artifactId>
         </dependency>
-
-        <!--<dependency>-->
-            <!--<groupId>com.battcn</groupId>-->
-            <!--<artifactId>swagger-spring-boot-starter</artifactId>-->
-            <!--<version>2.1.5-RELEASE</version>-->
-        <!--</dependency>-->
 
         <dependency>
             <groupId>com.xxx.yyy</groupId>
@@ -208,9 +192,38 @@
         </dependency>
 
 
+        <!-- 服务端：带UI界面 -->
+        <dependency>
+            <groupId>de.codecentric</groupId>
+            <artifactId>spring-boot-admin-starter-server</artifactId>
+            <version>${spring.boot.admin}</version>
+        </dependency>
+        <!-- 客户端包 -->
+        <dependency>
+            <groupId>de.codecentric</groupId>
+            <artifactId>spring-boot-admin-starter-client</artifactId>
+            <version>${spring.boot.admin}</version>
+        </dependency>
+        <!-- 安全认证 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+        <!-- 端点 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+        <!-- 在管理界面中与 JMX-beans 进行交互所需要被依赖的 JAR -->
+        <dependency>
+            <groupId>org.jolokia</groupId>
+            <artifactId>jolokia-core</artifactId>
+        </dependency>
 
-
-
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-mail</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
@@ -231,6 +244,13 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>build-info</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
 
             <!-- mybatis-generator -->
