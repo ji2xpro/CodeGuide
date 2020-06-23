@@ -6,7 +6,7 @@
     <!-- 可以看到 thymeleaf 是通过在标签里添加额外属性来绑定动态数据的 -->
     <title th:text="${title}">Title</title>
     <!-- 在/resources/static/js目录下创建一个hello.js 用如下语法依赖即可-->
-    <script type="text/javascript" th:src="@{/js/hello.js}"></script>
+    <!--<script type="text/javascript" th:src="@{/js/hello.js}"></script>-->
     <link rel="shortcut icon" href="../resources/favicon.ico" th:href="@{/favicon.ico}"/>
 </head>
 <body>
@@ -15,5 +15,45 @@
         <p th:text="${author?.name}"></p>
         <p th:text="${author?.age}"></p>
         <p th:text="${author?.email}"></p>
+
+
+    <h2>单一文件上传示例</h2>
+    <div>
+        <form method="POST" enctype="multipart/form-data" action="uploads/upload1">
+            <p>
+                文件1：<input type="file" name="file"/>
+                <input type="submit" value="上传"/>
+            </p>
+        </form>
+    </div>
+
+    <hr/>
+    <h2>批量文件上传示例</h2>
+
+    <div>
+        <form method="POST" enctype="multipart/form-data"
+              action="uploads/upload2">
+            <p>
+                文件1：<input type="file" name="file"/>
+            </p>
+            <p>
+                文件2：<input type="file" name="file"/>
+            </p>
+            <p>
+                <input type="submit" value="上传"/>
+            </p>
+        </form>
+    </div>
+
+    <hr/>
+    <h2>Base64文件上传</h2>
+    <div>
+        <form method="POST" action="uploads/upload3">
+            <p>
+                BASE64编码：<textarea name="base64" rows="10" cols="80"></textarea>
+                <input type="submit" value="上传"/>
+            </p>
+        </form>
+    </div>
 </body>
 </html>

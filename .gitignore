@@ -25,3 +25,6 @@ output
 .mvn
 *.iml
 target
+
+# other files
+upload

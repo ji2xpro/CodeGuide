@@ -2,7 +2,6 @@ package com.xxx.yyy.springbootguide.config;
 
 import com.alibaba.druid.pool.DruidDataSource;
 import com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceBuilder;
-import com.sun.deploy.association.utility.AppConstants;
 import com.xxx.yyy.springbootguide.config.datasource.DynamicDataSource;
 import com.xxx.yyy.springbootguide.enums.DataSources;
 import org.apache.commons.lang3.StringUtils;
@@ -12,20 +11,12 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.MutablePropertyValues;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.bind.Binder;
-import org.springframework.context.EnvironmentAware;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.ImportBeanDefinitionRegistrar;
 import org.springframework.context.annotation.Primary;
 import org.springframework.core.env.Environment;
-import org.springframework.core.env.MutablePropertySources;
-import org.springframework.core.env.PropertyResolver;
-import org.springframework.core.env.PropertySource;
-import org.springframework.core.env.PropertySourcesPropertyResolver;
-import org.springframework.core.env.StandardEnvironment;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
@@ -34,7 +25,6 @@ import org.springframework.validation.DataBinder;
 import javax.sql.DataSource;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Properties;
 
 /**
  * 多数据源配置类
