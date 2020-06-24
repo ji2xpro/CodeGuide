@@ -1,5 +1,7 @@
 package com.xxx.yyy.springbootguide.controller;
 
+import com.xxx.yyy.springbootguide.annotation.CacheLock;
+import com.xxx.yyy.springbootguide.annotation.CacheParam;
 import com.xxx.yyy.springbootguide.enums.DataType;
 import com.xxx.yyy.springbootguide.enums.ParamType;
 import com.xxx.yyy.springbootguide.model.User;
@@ -22,6 +24,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -92,5 +95,16 @@ public class UserController {
     public boolean put(@PathVariable Long id, @RequestBody User user) {
         log.info("如果你不想写 @ApiImplicitParam 那么 swagger 也会使用默认的参数名作为描述信息 ");
         return userService.update(user);
+    }
+
+
+    @CacheLock(prefix = "books")
+    @GetMapping("/1223")
+    @ApiOperation(value = "根据用户token查询用户（DONE）")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "token", value = "认证令牌", dataType = DataType.STRING, paramType = ParamType.QUERY, required = true),
+    })
+    public String query(@CacheParam(name = "token") @RequestParam String token) {
+        return "success - " + token;
     }
 }

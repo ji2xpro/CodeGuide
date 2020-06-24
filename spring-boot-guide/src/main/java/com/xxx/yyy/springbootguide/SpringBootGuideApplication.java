@@ -1,5 +1,7 @@
 package com.xxx.yyy.springbootguide;
 
+import com.xxx.yyy.springbootguide.interceptor.CacheKeyGenerator;
+import com.xxx.yyy.springbootguide.interceptor.LockKeyGenerator;
 import de.codecentric.boot.admin.server.config.AdminServerProperties;
 import de.codecentric.boot.admin.server.config.EnableAdminServer;
 import lombok.extern.slf4j.Slf4j;
@@ -9,6 +11,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
@@ -73,4 +76,5 @@ public class SpringBootGuideApplication {
                     env.getProperty("server.port"));
         }
     }
+
 }
