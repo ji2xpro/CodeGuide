@@ -2,9 +2,11 @@ package com.xxx.yyy.springbootguide.config;
 
 import com.alibaba.druid.pool.DruidDataSource;
 import com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceBuilder;
+import com.github.pagehelper.PageInterceptor;
 import com.xxx.yyy.springbootguide.config.datasource.DynamicDataSource;
 import com.xxx.yyy.springbootguide.enums.DataSources;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.ibatis.plugin.Interceptor;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -25,6 +27,7 @@ import org.springframework.validation.DataBinder;
 import javax.sql.DataSource;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Properties;
 
 /**
  * 多数据源配置类
@@ -255,6 +258,28 @@ public class DataSourceConfig {
         bean.setTypeAliasesPackage("com.xxx.yyy.springbootguide.model");
         // 设置我们的xml文件路径
         bean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath*:mapper/*.xml"));
+
+
+
+
+//            final SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
+//            sessionFactory.setDataSource(mysql);
+//            sessionFactory.setMapperLocations(
+//                    new PathMatchingResourcePatternResolver()
+//                            .getResources(MAPPER_LOCATION));
+//
+//            //分页插件
+//            Properties properties = new Properties();
+//            properties.setProperty("helperDialect", "mysql");
+//            properties.setProperty("offsetAsPageNum", "true");
+//            properties.setProperty("rowBoundsWithCount", "true");
+//            properties.setProperty("reasonable", "true");
+//            Interceptor interceptor = new PageInterceptor();
+//            interceptor.setProperties(properties);
+//            sessionFactory.setPlugins(new Interceptor[] {interceptor});
+
+
+
         return bean.getObject();
     }
 

@@ -20,7 +20,11 @@ public class test {
 //        x += x -= x-x;
 //        System.out.println(x);
 
-        System.out.println(letterCombinations("2"));
+
+        System.out.println( ~(1 << 31));
+        System.out.println(Integer.MAX_VALUE);
+        System.out.println(1<<12);
+//        System.out.println(letterCombinations("2"));
     }
 
 
