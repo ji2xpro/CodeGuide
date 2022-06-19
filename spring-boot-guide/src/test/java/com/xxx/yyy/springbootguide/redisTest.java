@@ -32,6 +32,7 @@ public class redisTest {
 
         String key = "user";
         redisUtil.set(key,user);
+        redisUtil.incr("test add incr",1);
         log.info("[字符缓存结果] - [{}]", key);
         // TODO 对应 String（字符串）
         final User user1 = (User) redisUtil.get(key);

@@ -6,9 +6,8 @@
        http://www.springframework.org/schema/context/spring-context.xsd">
 
 
-    <context:component-scan base-package="com.xxx.yyy" />
+    <context:component-scan base-package="com.xxx.yyy.spring" />
 
     <context:property-placeholder location="classpath:env.properties" ignore-unresolvable="true"/>
-
 
 </beans>

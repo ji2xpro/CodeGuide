@@ -8,6 +8,7 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.databind.jsontype.impl.LaissezFaireSubTypeValidator;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration;
@@ -48,7 +49,7 @@ import static java.util.Collections.singletonMap;
  */
 @Slf4j
 @Configuration
-//@EnableCaching //redis启用开关
+@EnableCaching //redis启用开关
 //@PropertySource("classpath:redis.properties")
 @AutoConfigureAfter(RedisAutoConfiguration.class)
 public class RedisConfig extends CachingConfigurerSupport {
@@ -70,7 +71,7 @@ public class RedisConfig extends CachingConfigurerSupport {
 
         // 使用StringRedisSerializer来序列化和反序列化redis的key值
         template.setKeySerializer(new StringRedisSerializer());
-        // 值采用json序列化
+        // 使用Jackson2JsonRedisSerializer来序列化和反序列化redis的value值
         template.setValueSerializer(genericJackson2JsonRedisSerializer);
 //        template.setValueSerializer(jackson2JsonRedisSerializer);
 
@@ -103,10 +104,8 @@ public class RedisConfig extends CachingConfigurerSupport {
 
         GenericJackson2JsonRedisSerializer genericJackson2JsonRedisSerializer = genericJackson2JsonRedisSerializer();
 
-        // 配置缓存
-        RedisCacheConfiguration redisCacheConfiguration = RedisCacheConfiguration.defaultCacheConfig();
-        // 重新配置缓存
-        redisCacheConfiguration = redisCacheConfiguration
+        // 配置序列化（解决乱码的问题)
+        RedisCacheConfiguration redisCacheConfiguration = RedisCacheConfiguration.defaultCacheConfig()
                 // 设置缓存的默认超时时间：30 minutes
                 .entryTtl(Duration.ofMinutes(30L))
                 // 禁用缓存前缀
@@ -195,7 +194,8 @@ public class RedisConfig extends CachingConfigurerSupport {
         objectMapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
         // 指定序列化输入的类型，类必须是非final修饰的，final修饰的类，比如String,Integer等会跑出异常
         // 此项必须配置，否则会报java.lang.ClassCastException: java.util.LinkedHashMap cannot be cast to XXX
-        objectMapper.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL, JsonTypeInfo.As.PROPERTY);
+//        objectMapper.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL, JsonTypeInfo.As.PROPERTY);
+        objectMapper.activateDefaultTyping(LaissezFaireSubTypeValidator.instance, ObjectMapper.DefaultTyping.NON_FINAL,JsonTypeInfo.As.PROPERTY);
         objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
 
         /**设置存储到redis中的日期格式*/

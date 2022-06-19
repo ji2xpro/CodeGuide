@@ -68,7 +68,7 @@ public class test {
 //        List<String> res=new ArrayList<>();
 //        if(digits==null||digits.equals(""))
 //            return res;
-//        HashMap<Character,char[]> map=new HashMap<>();
+//        hashMap<Character,char[]> map=new hashMap<>();
 //        map.put('0',new char[]{});
 //        map.put('1',new char[]{});
 //        map.put('2',new char[]{'a','b','c'});
@@ -83,7 +83,7 @@ public class test {
 //        findComb(digits,map,res,str);
 //        return res;
 //    }
-//    public void findComb(String digits,HashMap<Character,char[]>map,List<String>res,StringBuilder str){
+//    public void findComb(String digits,hashMap<Character,char[]>map,List<String>res,StringBuilder str){
 //        if(str.length()==digits.length()){//str的长度等于digits的长度证明是其中一个结果
 //            res.add(str.toString());
 //            return;

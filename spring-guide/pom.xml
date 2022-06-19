@@ -9,7 +9,6 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.xxx.yyy</groupId>
     <artifactId>spring-guide</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>war</packaging>
@@ -250,21 +249,55 @@
             <artifactId>testng-extentsreport</artifactId>
             <version>1.3.1</version>
         </dependency>
-
-
     </dependencies>
 
+    <profiles>
+        <profile>
+            <id>test</id>
+            <properties>
+                <env>test</env>
+            </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+        <profile>
+            <id>dev</id>
+            <properties>
+                <env>dev</env>
+            </properties>
+        </profile>
+        <profile>
+            <id>pro</id>
+            <properties>
+                <env>pro</env>
+            </properties>
+        </profile>
+    </profiles>
+
     <build>
+        <!-- maven模块化的话最好从父类继成取，打成包的命名 -->
         <finalName>test</finalName>
+        <!-- 使用指定的filter进行过滤，在执行mvn命令的时候带上-Ppro就代表生产环境，就会加载生产环境的properties，-Ptest就代表测试环境（默认） -->
         <filters>
             <filter>src/main/resources/${env}/${env}.properties</filter>
         </filters>
+        <!-- 资源文件位置src/main/resources/,这下面的资源文件的${}会全部被替换成filter中的标签内容。
+                 directory指定的value会作为classes的资源跟目录，
+                 比如指定:src/main/resources/，则classes下会出现jdbc等包，
+                 若指定:src/main/resources/jdbc/，则classes下直接出现jdbc包下的文件，不会额外出现jdbc等其他包结构。因为他把jdbc作为了根目录
+         -->
         <resources>
             <resource>
-                <!-- 这个filter必须要设为true, 把所有文件都过滤掉，然后下面再手动include，一个一个文件夹自己添加 -->
                 <directory>src/main/resources</directory>
+                <!-- 在某个resource中如果设置filtering为true，将会根据输入参数动态修改相关内容。 -->
                 <filtering>true</filtering>
+                <!-- 排除标签 -->
                 <excludes>
+                    <!--
+                      exclude可以排除指定文件，支持通配符 ,匹配项不会生成到classes目录下，路径是以directory开始的
+                      在这里就是directory（src/main/resources/）/properties/env/pro.properties
+                    -->
                     <exclude>dev/*</exclude>
                     <exclude>pro/*</exclude>
                     <exclude>test/*</exclude>
@@ -273,7 +306,7 @@
 
             <!--<resource>-->
             <!--&lt;!&ndash; 这里会直接把${profiles.active}对应文件夹下的内容打包到classpath下 &ndash;&gt;-->
-            <!--<directory>src/main/resources/${env}</directory>-->
+                <!--<directory>src/main/resources/${env}</directory>-->
             <!--</resource>-->
         </resources>
         <!--<pluginManagement>&lt;!&ndash; lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) &ndash;&gt;-->
@@ -367,7 +400,7 @@
                                 <!--</java>-->
                                 <echo message="**********现在开始执行ApiTestEntry函数：入口*********"/>
                                 <property name="test_classpath" refid="maven.test.classpath"/>
-                                <java classname="com.xxx.yyy.mainStart" classpath="${test_classpath}"
+                                <java classname="com.xxx.yyy.spring.mainStart" classpath="${test_classpath}"
                                       fork="true" maxmemory="256m">
                                     <sysproperty key="file.encoding" value="UTF-8"/>
                                     <arg value="${test_classpath}"/>
@@ -398,30 +431,4 @@
     <!--</plugin>-->
     <!--</plugins>-->
     <!--</reporting>-->
-
-    <profiles>
-        <profile>
-            <id>test</id>
-            <properties>
-                <env>test</env>
-            </properties>
-        </profile>
-        <profile>
-            <id>dev</id>
-            <properties>
-                <env>dev</env>
-            </properties>
-        </profile>
-        <profile>
-            <id>pro</id>
-            <properties>
-                <env>pro</env>
-            </properties>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-        </profile>
-    </profiles>
-
-
 </project>

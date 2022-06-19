@@ -1,38 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Test Suite" thread-count="1" verbose="1">
-    <!--<listeners>-->
-        <!--<listener class-name="com.xxx.yyy.Retry.RetryListener" />-->
-        <!--&lt;!&ndash;<listener class-name="com.xxx.yyy.Retry.TestNgListener" />&ndash;&gt;-->
-        <!--&lt;!&ndash;<listener class-name="com.xxx.yyy.ExtentReports.ExtentTestNGIReporterListener"/>&ndash;&gt;-->
-    <!--</listeners>-->
+    <listeners>
+        <listener class-name="com.xxx.yyy.spring.retry.RetryListener" />
+        <listener class-name="com.xxx.yyy.spring.retry.TestNgListener" />
+        <listener class-name="com.xxx.yyy.spring.extentReports.ExtentTestNGIReporterListener"/>
+    </listeners>
     <!--<listeners>-->
         <!--&lt;!&ndash;<listener class-name="com.vimalselvam.testng.listener.ExtentTestNgFormatter"/>&ndash;&gt;-->
-        <!--<listener class-name="com.xxx.yyy.ExtentReports.ExtentTestNGIReporterListener"/>-->
+        <!--<listener class-name="com.xxx.yyy.extentReports.ExtentTestNGIReporterListener"/>-->
     <!--</listeners>-->
     <!--<listeners>-->
         <!--<listener class-name="io.qameta.allure.testng.AllureTestNg"></listener>-->
     <!--</listeners>-->
-    <listeners>
-        <listener class-name="com.xxx.yyy.Report.Report"></listener>
-    </listeners>
-    <test name="retryTest">
-        <classes>
-            <!--<class name="com.xxx.yyy.retryTest">-->
-                <!--&lt;!&ndash;<parameter name="para1" value="test_para123"/>&ndash;&gt;-->
-                <!--&lt;!&ndash;<methods>&ndash;&gt;-->
-                <!--&lt;!&ndash;<include name ="dataTest"></include>&ndash;&gt;-->
-                <!--&lt;!&ndash;</methods>&ndash;&gt;-->
+    <!--<listeners>-->
+        <!--<listener class-name="com.xxx.yyy.spring.report.Report"></listener>-->
+    <!--</listeners>-->
+    <!--<test name="retryTest">-->
+        <!--<classes>-->
+            <!--&lt;!&ndash;<class name="com.xxx.yyy.spring.retryTest">&ndash;&gt;-->
+                <!--&lt;!&ndash;&lt;!&ndash;<parameter name="para1" value="test_para123"/>&ndash;&gt;&ndash;&gt;-->
+                <!--&lt;!&ndash;&lt;!&ndash;<methods>&ndash;&gt;&ndash;&gt;-->
+                <!--&lt;!&ndash;&lt;!&ndash;<include name ="dataTest"></include>&ndash;&gt;&ndash;&gt;-->
+                <!--&lt;!&ndash;&lt;!&ndash;</methods>&ndash;&gt;&ndash;&gt;-->
 
-            <!--</class>-->
-            <class name="com.xxx.yyy.MultiEnv.MultiEnvTest"/>
-        </classes>
-    </test>
+            <!--&lt;!&ndash;</class>&ndash;&gt;-->
+            <!--<class name="com.xxx.yyy.spring.MultiEnv.MultiEnvTest"/>-->
+        <!--</classes>-->
+    <!--</test>-->
 
     <test name="otherTest">
         <classes>
-            <class name="com.xxx.yyy.otherTest" />
-            <class name="com.xxx.yyy.otherTest1" />
+            <class name="com.xxx.yyy.spring.otherTest" />
+            <class name="com.xxx.yyy.spring.otherTest1" />
         </classes>
     </test>
     <!--<test name="otherTest1">-->
@@ -40,9 +40,9 @@
 
         <!--</classes>-->
     <!--</test>-->
-    <!--<test name="otherTest1111">-->
-        <!--<classes>-->
-            <!--<class name="com.xxx.yyy.allureTest" />-->
-        <!--</classes>-->
-    <!--</test>-->
+    <test name="otherTest1111">
+        <classes>
+            <class name="com.xxx.yyy.spring.allureTest" />
+        </classes>
+    </test>
 </suite>
